@@ -5,9 +5,9 @@ import './FeedbackOptions.module.css';
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
-      {options.map(option => (
-        <button key={option} onClick={onLeaveFeedback} name={option}>
-          {option}
+      {options.map(({ id, name }) => (
+        <button key={id} onClick={() => onLeaveFeedback(name)} name={name}>
+          {name}
         </button>
       ))}
     </>
@@ -17,6 +17,6 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   onLeaveFeedback: PropTypes.func,
 };
